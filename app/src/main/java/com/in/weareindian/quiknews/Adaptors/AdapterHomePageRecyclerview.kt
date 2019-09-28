@@ -54,7 +54,7 @@ class AdapterHomePageRecyclerview(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        deleteImage()
+        //deleteImage()
 
         val obj = postList.get(position)
 
@@ -71,6 +71,7 @@ class AdapterHomePageRecyclerview(
             e.printStackTrace()
             Log.e("text", obj.created + obj.url)
         }
+
 
 
         fun downloadFile(uRl: String) {
@@ -100,7 +101,6 @@ class AdapterHomePageRecyclerview(
             Toast.makeText(activityHomePage, "Image Downloaded", Toast.LENGTH_LONG).show()
 
         }
-
         holder.download.setOnClickListener {
 
             if (verifyAvailableNetwork(activityHomePage)) {
@@ -134,7 +134,7 @@ class AdapterHomePageRecyclerview(
 //
 //            val mBitmap = challange_view.drawingCache
                 try {
-                    val path = folder_name + "/${obj.id}.png"
+                    val path = Environment.getExternalStorageDirectory().toString() + "/${obj.id}.png"
                     val outputStream = FileOutputStream(File(path))
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
                     outputStream.flush()
@@ -147,7 +147,7 @@ class AdapterHomePageRecyclerview(
                     ).show()
                 }
 
-                val imagePath: String = folder_name + "/${obj.id}.png"
+                val imagePath: String = Environment.getExternalStorageDirectory().toString() + "/${obj.id}.png"
                 imageFileToShare = File(imagePath)
                 val uri = Uri.fromFile(imageFileToShare)
                 try {
@@ -229,6 +229,7 @@ class AdapterHomePageRecyclerview(
         }
 
     }
+
 
 
 }
